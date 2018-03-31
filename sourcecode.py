@@ -4,7 +4,8 @@ import numpy as np
 def taskCalculations():
     with open("Vehicle Data.txt",'w')as f:
         f.write("")
-    Pmax=129 ;NeMax=6000 
+    Pmax=int(input("Enter Max. Power (in KW): "))
+    NeMax=int(input("Enter RPM at max Power: ")) 
     Ne=[1000,2000,3000,4000,5000,6000]   #EngineTurns(rpm)
     Te=[]                                #EngineTorque
     Pe=[]                                #EnginePower
@@ -14,15 +15,21 @@ def taskCalculations():
                                 ((Ne[i]/NeMax)**3)),2))
         Te.insert(i,(round(((9550*Pe[i])/Ne[i]),2)))
         
-    GVW=24000; Cd=0.38
-    #GVW=  rossVehicleMass; Cd= DragCoefficient
-    Af=2.936; iF=4.25
-    #Af= AirResistance; iF= DiffrentialReductionRatio
-    rw=0.36865; p=1.225; z=0.95
-    #rw= RadiusWheel; p= DensityOfAir; z= EfficiencyOfEngine
+    GVW=float(input("Enter Gross Vehicle Weight OR Curb weight if available(N)"))#GVW= GrossVehicleWeight
+    Cd =float(input("Enter Drag Coefficient (Cd): ")) #Cd= DragCoefficient
+    Af =float(input("Enter Air resistance: ")) #Af= AirResistance
+    z=float(input("Enter Efficiency of the Engine: ")) #z= EfficiencyOfEngine
+    rw=float(input("Enter Radius of the Tire (in meters): ")) #rw= RadiusWheel
+    Nig=input("Enter Number of Transmission Gears: ")
+    blabla=["First","Second","Third","Fourth","Fifth","Sixth","Seventh","Eightth","Ninth","Tenth","Eleventh"]
+    ig=[]       #ig=GearboxReductionRatio
+    for i in range(int(Nig)):
+        IG=float(input("Enter "+blabla[i]+" Gear ratio: "))
+        ig.insert(i,IG)
+    iF=float(input("Enter Diffrential Reduction Ratio: ")) #iF= DiffrentialReductionRatio
+    p=1.225 #p= DensityOfAir
     fr=0.014; FR=fr*GVW;  
-    #fr= RollingCoefficient #FR= RollingResistance
-    ig=[3.359,2.095,1.485,1.056,0.754,0.556] 
+    #fr= RollingCoefficient #FR= RollingResistance 
     EngData={}
     for i in range(len(ig)):#Calculations + Plotting
         V=[]                #V=Velocity
