@@ -18,7 +18,8 @@ def taskCalculations():
     #Af= AirResistance; iF= DiffrentialReductionRatio
     rw=0.36865; p=1.225; z=0.95
     #rw= RadiusWheel; p= DensityOfAir; z= EfficiencyOfEngine
-    
+    fr=0.014; FR=fr*GVW;  
+    #fr= RollingCoefficient #FR= RollingResistance
     ig=[3.359,2.095,1.485,1.056,0.754,0.556] 
     for i in range(len(Pe)): #TorquePower
         Te.insert(i,(round(((9550*Pe[i])/Ne[i]),2)))
@@ -28,6 +29,7 @@ def taskCalculations():
         TE1.insert(i,(round((Te[i]*z*ig[0]*iF)/rw,2)))
         DF1.insert(i,(round((TE1[i]-FA1[i])/GVW,3)))
         a1.insert(i,round(TE1[i]/(GVW/9.8),2))
+    FT1=list(np.asarray(FA1)+FR) #FT= TotalResistance
     print(V1);print(FA1);print(TE1);print(DF1)
     print("-------------------")
     for i in range(len(Ne)): #Second gear
@@ -36,6 +38,7 @@ def taskCalculations():
         TE2.insert(i,(round((Te[i]*z*ig[1]*iF)/rw,2)))
         DF2.insert(i,(round((TE2[i]-FA2[i])/GVW,3)))
         a2.insert(i,round(TE2[i]/(GVW/9.8),2))
+    FT2=list(np.asarray(FA2)+FR)
     print(V2);print(FA2);print(TE2);print(DF2)
     print("---------------------")
     for i in range(len(Ne)): #Third gear
@@ -44,6 +47,7 @@ def taskCalculations():
         TE3.insert(i,(round((Te[i]*z*ig[2]*iF)/rw,2)))
         DF3.insert(i,(round((TE3[i]-FA3[i])/GVW,3)))
         a3.insert(i,round(TE3[i]/(GVW/9.8),2))
+    FT3=list(np.asarray(FA3)+FR)
     print(V3);print(FA3);print(TE3);print(DF3)
     print("---------------------")
     for i in range(len(Ne)): #Fourth gear
@@ -52,6 +56,7 @@ def taskCalculations():
         TE4.insert(i,(round((Te[i]*z*ig[3]*iF)/rw,2)))
         DF4.insert(i,(round((TE4[i]-FA4[i])/GVW,3)))
         a4.insert(i,round(TE4[i]/(GVW/9.8),2))
+    FT4=list(np.asarray(FA4)+FR)
     print(V4);print(FA4);print(TE4);print(DF4)
     print("---------------------")
     for i in range(len(Ne)): #fifth gear
@@ -60,6 +65,7 @@ def taskCalculations():
         TE5.insert(i,(round((Te[i]*z*ig[4]*iF)/rw,2)))
         DF5.insert(i,(round((TE5[i]-FA5[i])/GVW,3)))
         a5.insert(i,round(TE5[i]/(GVW/9.8),2))
+    FT5=list(np.asarray(FA5)+FR)
     print(V5);print(FA5);print(TE5);print(DF5)
     print("---------------------")
     for i in range(len(Ne)): #sixth gear
@@ -68,6 +74,7 @@ def taskCalculations():
         TE6.insert(i,(round((Te[i]*z*ig[5]*iF)/rw,2)))
         DF6.insert(i,(round((TE6[i]-FA6[i])/GVW,3)))
         a6.insert(i,round(TE6[i]/(GVW/9.8),2))
+    FT6=list(np.asarray(FA6)+FR)
     print(V6);print(FA6);print(TE6);print(DF6)
 
 
@@ -101,6 +108,16 @@ def taskCalculations():
     pt.xlim([0,200])
     pt.grid(linewidth=1)
     pt.legend()
+
+    FTV=DFV.twinx()
+    FTV.plot(V1,FT1,"black")
+    FTV.plot(V2,FT2,"black")
+    FTV.plot(V3,FT3,"black")
+    FTV.plot(V4,FT4,"black")
+    FTV.plot(V5,FT5,"black")
+    FTV.plot(V6,FT6,"black")
+    FTV.set_ylabel("Total Resistance")
+    pt.grid(linewidth=1)
 
     TorqueGraph=fig.add_subplot(1,2,2)          #TorquePowerGraph
     TorqueGraph.plot(Ne,Te,"black",label="Torque")
