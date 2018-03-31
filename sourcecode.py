@@ -1,11 +1,13 @@
 from decimal import Decimal
 import matplotlib.pyplot as pt
 import numpy as np
+import re
+from tkinter import *
 def taskCalculations():
     with open("Vehicle Data.txt",'w')as f:
         f.write("")
-    Pmax=int(input("Enter Max. Power (in KW): "))
-    NeMax=int(input("Enter RPM at max Power: ")) 
+    Pmax=int(PmaxEntry.get())
+    NeMax=int(NeMaxEntry.get()) 
     Ne=[1000,2000,3000,4000,5000,6000]   #EngineTurns(rpm)
     Te=[]                                #EngineTorque
     Pe=[]                                #EnginePower
@@ -15,21 +17,24 @@ def taskCalculations():
                                 ((Ne[i]/NeMax)**3)),2))
         Te.insert(i,(round(((9550*Pe[i])/Ne[i]),2)))
         
-    GVW=float(input("Enter Gross Vehicle Weight OR Curb weight if available(N)"))#GVW= GrossVehicleWeight
-    Cd =float(input("Enter Drag Coefficient (Cd): ")) #Cd= DragCoefficient
-    Af =float(input("Enter Air resistance: ")) #Af= AirResistance
-    z=float(input("Enter Efficiency of the Engine: ")) #z= EfficiencyOfEngine
-    rw=float(input("Enter Radius of the Tire (in meters): ")) #rw= RadiusWheel
-    Nig=input("Enter Number of Transmission Gears: ")
+    GVW=float(GVWEntry.get())#GVW=  rossVehicleMass
+    Cd= float(CdEntry.get()) #Cd= DragCoefficient
+    Af= float(AfEntry.get()) #Af= AirResistance
+    z=  float(zEntry.get())  #z= EfficiencyOfEngine
+    rw= float(rwEntry.get()) #rw= RadiusWheel
+    iF= float(iFEntry.get()) #iF= DiffrentialReductionRatio
+    Nig=int(NigEntry.get())  #Nig=NumberOfTransmissionGears
+    p=  float(pEntry.get())  #p= DensityOfAir
+    fr= float(frEntry.get()) #fr= RollingCoefficient
+
     blabla=["First","Second","Third","Fourth","Fifth","Sixth","Seventh","Eightth","Ninth","Tenth","Eleventh"]
     ig=[]       #ig=GearboxReductionRatio
     for i in range(int(Nig)):
         IG=float(input("Enter "+blabla[i]+" Gear ratio: "))
         ig.insert(i,IG)
-    iF=float(input("Enter Diffrential Reduction Ratio: ")) #iF= DiffrentialReductionRatio
-    p=1.225 #p= DensityOfAir
-    fr=0.014; FR=fr*GVW;  
-    #fr= RollingCoefficient #FR= RollingResistance 
+
+    FR=fr*GVW;
+    #FR= RollingResistance 
     EngData={}
     for i in range(len(ig)):#Calculations + Plotting
         V=[]                #V=Velocity
@@ -96,4 +101,58 @@ def taskCalculations():
         DFV.plot(EngData['V'+str(i)],EngData['DF'+str(i)])
         FTV.plot(EngData['V'+str(i)],EngData['FT'+str(i)],"black")
     pt.show()
-taskCalculations()
+    
+Pmax=Label(root,text="Pmax: ")
+Pmax.grid(row=0,column=0)
+PmaxEntry=Entry(root)
+PmaxEntry.grid(row=0, column=1)
+NeMax=Label(root,text="NeMax: ")
+NeMax.grid(row=0,column=2)
+NeMaxEntry=Entry(root)
+NeMaxEntry.grid(row=0,column=3)
+
+GVW=Label(root,text="GVW: ")
+GVW.grid(row=1,column=0)
+GVWEntry=Entry(root)
+GVWEntry.grid(row=1, column=1)
+Cd=Label(root,text="Drag Coefficient: ")
+Cd.grid(row=1,column=2)
+CdEntry=Entry(root)
+CdEntry.grid(row=1,column=3)
+
+Af=Label(root,text="Af: ")
+Af.grid(row=2,column=0)
+AfEntry=Entry(root)
+AfEntry.grid(row=2,column=1)
+z=Label(root,text="Eng. Efficiency: ")
+z.grid(row=2,column=2)
+zEntry=Entry(root)
+zEntry.grid(row=2,column=3)
+
+rw=Label(root,text="Radius of wheel: ")
+rw.grid(row=3,column=0)
+rwEntry=Entry(root)
+rwEntry.grid(row=3,column=1)
+iF=Label(root,text="Differential Reduction: ")
+iF.grid(row=3,column=2)
+iFEntry=Entry(root)
+iFEntry.grid(row=3,column=3)
+
+Nig=Label(root,text="Number of Gears")
+Nig.grid(row=4,column=0)
+NigEntry=Entry(root)
+NigEntry.grid(row=4,column=1)
+p=Label(root,text="Density of Air")
+p.grid(row=4,column=2)
+pEntry=Entry(root)
+pEntry.grid(row=4,column=3)
+
+fr=Label(root,text="Rolling Coefficient")
+fr.grid(row=5,column=0)
+frEntry=Entry(root)
+frEntry.grid(row=5,column=1)
+Butt=Button(root,text="Enter Data",command=taskCalculations)
+Butt.grid(row=5,column=2)
+
+root.mainloop()
+
