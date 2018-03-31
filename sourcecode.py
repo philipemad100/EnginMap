@@ -2,6 +2,8 @@ from decimal import Decimal
 import matplotlib.pyplot as pt
 import numpy as np
 def taskCalculations():
+    with open("Vehicle Data.txt",'w')as f:
+        f.write("")
     Pmax=129 ;NeMax=6000 
     Ne=[1000,2000,3000,4000,5000,6000]   #EngineTurns(rpm)
     Te=[]                                #EngineTorque
@@ -93,7 +95,18 @@ def taskCalculations():
     print("TE6="+str(TE6));print("DF6="+str(DF6));
     print("FT6="+str(FT6));print("Acc6="+str(a6))
 
-
+    with open("Vehicle Data.txt",'a+')as f:                              #Saving Data into a Text File
+        f.write("V1= "+str(V1)+"\n"+"FA1="+str(FA1)+"\n"+"TE1="+str(TE1)+"\n"+"DF1="+str(DF1)+"\n"+
+                "----------------------------------------------"+"\n")
+        f.write("V2= "+str(V2)+"\n"+"FA2="+str(FA2)+"\n"+"TE2="+str(TE2)+"\n"+"DF2="+str(DF2)+"\n"+
+                "----------------------------------------------"+"\n")
+        f.write("V3= "+str(V3)+"\n"+"FA3="+str(FA3)+"\n"+"TE3="+str(TE3)+"\n"+"DF3="+str(DF3)+"\n"+
+                "----------------------------------------------"+"\n")
+        f.write("V4= "+str(V4)+"\n"+"FA4="+str(FA4)+"\n"+"TE4="+str(TE4)+"\n"+"DF4="+str(DF4)+"\n"+
+                "----------------------------------------------"+"\n")
+        f.write("V5= "+str(V5)+"\n"+"FA5="+str(FA5)+"\n"+"TE5="+str(TE5)+"\n"+"DF5="+str(DF5)+"\n"+
+                "----------------------------------------------"+"\n")
+        f.write("V6= "+str(V6)+"\n"+"FA6="+str(FA6)+"\n"+"TE6="+str(TE6)+"\n"+"DF6="+str(DF6)+"\n"+"\n")
 
     fig=pt.figure()
     fig.patch.set_facecolor("grey")
