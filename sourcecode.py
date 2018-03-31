@@ -2,9 +2,15 @@ from decimal import Decimal
 import matplotlib.pyplot as pt
 import numpy as np
 def taskCalculations():
-    Pe=[23.2,49.8,76.75,100.9,119.1,129] #EnginePower
+    Pmax=129 ;NeMax=6000 
     Ne=[1000,2000,3000,4000,5000,6000]   #EngineTurns(rpm)
     Te=[]                                #EngineTorque
+    Pe=[]                                #EnginePower
+    for i in range(len(Ne)):                 #TorqueCalculations
+        Pe.insert(i,round(Pmax*((Ne[i]/NeMax)+
+                                ((Ne[i]/NeMax)**2)-
+                                ((Ne[i]/NeMax)**3)),2))
+        Te.insert(i,(round(((9550*Pe[i])/Ne[i]),2)))
     V1=[];FA1=[];TE1=[];DF1=[];a1=[]     #V=Velocity
     V2=[];FA2=[];TE2=[];DF2=[];a2=[]     #TE=TractiveEffort
     V3=[];FA3=[];TE3=[];DF3=[];a3=[]     #DF=DynamicFactor
@@ -21,8 +27,6 @@ def taskCalculations():
     fr=0.014; FR=fr*GVW;  
     #fr= RollingCoefficient #FR= RollingResistance
     ig=[3.359,2.095,1.485,1.056,0.754,0.556] 
-    for i in range(len(Pe)): #TorquePower
-        Te.insert(i,(round(((9550*Pe[i])/Ne[i]),2)))
     for i in range(len(Ne)): #First gear
         V1.insert(i,(round((0.377*Ne[i]*rw)/(ig[0]*iF),2)))
         FA1.insert(i,(round((0.5*p*Cd*Af*((5/18)*V1[i])**2),2)))
