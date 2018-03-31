@@ -30,7 +30,9 @@ def taskCalculations():
         DF1.insert(i,(round((TE1[i]-FA1[i])/GVW,3)))
         a1.insert(i,round(TE1[i]/(GVW/9.8),2))
     FT1=list(np.asarray(FA1)+FR) #FT= TotalResistance
-    print(V1);print(FA1);print(TE1);print(DF1)
+    print("V1="+str(V1));print("FA1="+str(FA1));
+    print("TE1="+str(TE1));print("DF1="+str(DF1));
+    print("FT1="+str(FT1));print("Acc1="+str(a1))
     print("-------------------")
     for i in range(len(Ne)): #Second gear
         V2.insert(i,(round((0.377*Ne[i]*rw)/(ig[1]*iF),2)))
@@ -39,7 +41,9 @@ def taskCalculations():
         DF2.insert(i,(round((TE2[i]-FA2[i])/GVW,3)))
         a2.insert(i,round(TE2[i]/(GVW/9.8),2))
     FT2=list(np.asarray(FA2)+FR)
-    print(V2);print(FA2);print(TE2);print(DF2)
+    print("V2="+str(V2));print("FA2="+str(FA2));
+    print("TE2="+str(TE2));print("DF2="+str(DF2));
+    print("FT2="+str(FT2));print("Acc2="+str(a2))
     print("---------------------")
     for i in range(len(Ne)): #Third gear
         V3.insert(i,(round((0.377*Ne[i]*rw)/(ig[2]*iF),2)))
@@ -48,7 +52,9 @@ def taskCalculations():
         DF3.insert(i,(round((TE3[i]-FA3[i])/GVW,3)))
         a3.insert(i,round(TE3[i]/(GVW/9.8),2))
     FT3=list(np.asarray(FA3)+FR)
-    print(V3);print(FA3);print(TE3);print(DF3)
+    print("V3="+str(V3));print("FA3="+str(FA3));
+    print("TE3="+str(TE3));print("DF3="+str(DF3));
+    print("FT3="+str(FT3));print("Acc3="+str(a3))
     print("---------------------")
     for i in range(len(Ne)): #Fourth gear
         V4.insert(i,(round((0.377*Ne[i]*rw)/(ig[3]*iF),2)))
@@ -57,7 +63,9 @@ def taskCalculations():
         DF4.insert(i,(round((TE4[i]-FA4[i])/GVW,3)))
         a4.insert(i,round(TE4[i]/(GVW/9.8),2))
     FT4=list(np.asarray(FA4)+FR)
-    print(V4);print(FA4);print(TE4);print(DF4)
+    print("V4="+str(V4));print("FA4="+str(FA4));
+    print("TE4="+str(TE4));print("DF4="+str(DF4));
+    print("FT4="+str(FT4));print("Acc4="+str(a4))
     print("---------------------")
     for i in range(len(Ne)): #fifth gear
         V5.insert(i,(round((0.377*Ne[i]*rw)/(ig[4]*iF),2)))
@@ -66,7 +74,9 @@ def taskCalculations():
         DF5.insert(i,(round((TE5[i]-FA5[i])/GVW,3)))
         a5.insert(i,round(TE5[i]/(GVW/9.8),2))
     FT5=list(np.asarray(FA5)+FR)
-    print(V5);print(FA5);print(TE5);print(DF5)
+    print("V5="+str(V5));print("FA5="+str(FA5));
+    print("TE5="+str(TE5));print("DF5="+str(DF5));
+    print("FT5="+str(FT5));print("Acc5="+str(a5))
     print("---------------------")
     for i in range(len(Ne)): #sixth gear
         V6.insert(i,(round((0.377*Ne[i]*rw)/(ig[5]*iF),2)))
@@ -75,7 +85,9 @@ def taskCalculations():
         DF6.insert(i,(round((TE6[i]-FA6[i])/GVW,3)))
         a6.insert(i,round(TE6[i]/(GVW/9.8),2))
     FT6=list(np.asarray(FA6)+FR)
-    print(V6);print(FA6);print(TE6);print(DF6)
+    print("V6="+str(V6));print("FA6="+str(FA6));
+    print("TE6="+str(TE6));print("DF6="+str(DF6));
+    print("FT6="+str(FT6));print("Acc6="+str(a6))
 
 
 
